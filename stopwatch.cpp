@@ -12,25 +12,22 @@
 */
 #include "stopwatch.h"
 
-float start;
-float stop;
+double start;
+double end;
+
 void start_stopwatch()
 {
-  start = clock();
+    start = clock();
+}
+double elapsed_time()
+{
+    if (end < start)
+    {
+        return (clock() - start) / CLOCKS_PER_SEC;
+    }
+    return (end - start) / CLOCKS_PER_SEC;
 }
 void stop_stopwatch()
 {
-  stop = clock();
-}
-float elapsed_time()
-{
-  if(stop < start)
-  {
-    return (clock() - start) / CLOCKS_PER_SEC;
-  }
-  else
-  {
-    return (stop - start) / CLOCKS_PER_SEC;
-  }
-
+    end = clock();
 }
